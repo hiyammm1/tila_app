@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -9,7 +9,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
       home: OnboardingScreen(),
     );
@@ -29,7 +29,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   final List<Map<String, String>> _pages = [
     {
-      "image": "assets/images/logo.jpg",
+      "image": "assets/images/pta.png",
       "title": "",
       "subtitle": "",
     },
@@ -42,6 +42,11 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       "image": "assets/images/woman_side.jpg",
       "title": "We are ready to help you anytime, anywhere",
       "subtitle": "Your safety and security are our priority",
+    },
+    {
+      "image": "assets/images/wonder_women.jpg",
+      "title": "Sharing your location with someone you trust is a smart way to enhance your safety when walking alone!",
+      "subtitle": "We respect your privacy, and your location will only be shared with your consent",
     }
   ];
 
@@ -64,7 +69,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       // Set solid purple background for first screen, else use image background
       Positioned.fill(
         child: index == 0
-            ? Container(color: Color(0xFFA82AE3)) // Background for first page
+            ? Container(color: const Color(0xFFA82AE3)) // Background for first page
             : Image.asset(_pages[index]["image"]!, fit: BoxFit.cover),
       ),
       // Gradient overlay for other screens
@@ -74,19 +79,18 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [
-            Colors.transparent, // No effect at the top
-            Colors.purple.withOpacity(0.3), // Slight purple blur in the middle
-            Color(0xFFA82AE3).withOpacity(0.9), // Darker purple at the bottom
+            Colors.purple.withOpacity(0.2), // Start with no effect at the top
+            Colors.purple.withOpacity(0.6), // Gradually get purple in the middle
+            const Color(0xFFA82AE3).withOpacity(0.99), // Even darker purple in the lower middle
+            const Color(0xFFA82AE3), // Full dark purple at the bottom
           ],
-          stops: [0.4, 0.7, 1.0], // Controls transition points (closer to bottom)
+          stops: const [0.0, 0.4, 0.7, 1.0], // Controls transition points (stepping into darker colors)
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
         ),
       ),
     ),
   ),
-
-
       // Centered logo on first screen
       if (index == 0)
         Center(
@@ -98,35 +102,59 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         ),
       // Title and subtitle for other screens
       if (index != 0)
-        Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            if (_pages[index]["title"]!.isNotEmpty)
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
-                child: Text(
-                  _pages[index]["title"]!,
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
+        Positioned(
+          bottom: 150, // Move text closer to the bottom by adjusting this value
+          left: 20,
+          right: 20,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              if (_pages[index]["title"]!.isNotEmpty)
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
+                  child: Text(
+                    _pages[index]["title"]!,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: index == 3 ? 16 : 24,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
-              ),
-            if (_pages[index]["subtitle"]!.isNotEmpty)
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 30.0),
-                child: Text(
-                  _pages[index]["subtitle"]!,
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    fontSize: 16,
-                    color: Colors.white70,
+              if (_pages[index]["subtitle"]!.isNotEmpty)
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 30.0),
+                  child: Text(
+                    _pages[index]["subtitle"]!,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                      fontSize: 16,
+                      color: Colors.white70,
+                    ),
                   ),
                 ),
-              ),
-          ],
+              // Dot indicator row
+Padding(
+  padding: const EdgeInsets.only(top: 20),
+  child: Row(
+    mainAxisAlignment: MainAxisAlignment.center,
+    children: List.generate(_pages.length - 1, (dotIndex) {
+      return Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 4.0),
+        child: Icon(
+          Icons.circle,
+          size: 12.0,
+          color: _currentIndex == dotIndex + 1
+              ? Colors.white // Highlight the current page dot
+              : Colors.white70, // Inactive dots
+        ),
+      );
+    }),
+  ),
+),  
+            ],
+          ),
         ),
     ],
   );
