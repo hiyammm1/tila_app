@@ -1,8 +1,7 @@
 name: tila_app_2
 description: "A new Flutter project."
-# The following line prevents the package from being accidentally published to
-# pub.dev using `flutter pub publish`. This is preferred for private packages.
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+publish_to: 'none' 
 
 
 version: 1.0.0+1
@@ -20,6 +19,7 @@ dependencies:
   cupertino_icons: ^1.0.6
 
 dev_dependencies:
+  flutter_launcher_icons: ^0.13.1
   flutter_test:
     sdk: flutter
 
@@ -39,6 +39,19 @@ flutter:
      - assets/images/logo.jpg
      - assets/images/wonder_women.jpg
      - assets/images/pta.png 
+     - assets/images/ptc.png
+     - assets/images/loginreg.jpg
+     - assets/images/login2.jpg
+     - assets/images/google_logo.jpg
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/images/ptb.png"  # Path to your app logo
+  adaptive_icon_background: "#A82AE3"  # Optional: Background color for Android adaptive icon
+  adaptive_icon_foreground: "assets/images/ptb.png"  # Optional for Android
+  remove_alpha_ios: true  
+
+
 
 
  
