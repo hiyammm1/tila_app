@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 import 'register_page.dart';
+import 'home_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _LoginPageState createState() => _LoginPageState();
 }
 
 class _LoginPageState extends State<LoginPage> {
-  bool _obscurePassword = true; 
+  bool _obscurePassword = true;
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +24,7 @@ class _LoginPageState extends State<LoginPage> {
             SizedBox(
               width: double.infinity,
               child: Image.asset(
-                "assets/images/login2.jpg", 
+                "assets/images/login2.jpg",
                 fit: BoxFit.cover,
               ),
             ),
@@ -60,13 +62,15 @@ class _LoginPageState extends State<LoginPage> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24),
               child: TextField(
-                obscureText: _obscurePassword, 
+                obscureText: _obscurePassword,
                 decoration: InputDecoration(
                   labelText: "Password",
                   prefixIcon: const Icon(Icons.lock),
                   suffixIcon: IconButton(
                     icon: Icon(
-                      _obscurePassword ? Icons.visibility_off : Icons.visibility,
+                      _obscurePassword
+                          ? Icons.visibility_off
+                          : Icons.visibility,
                     ),
                     onPressed: () {
                       setState(() {
@@ -87,9 +91,9 @@ class _LoginPageState extends State<LoginPage> {
               child: Align(
                 alignment: Alignment.centerRight,
                 child: TextButton(
-                  onPressed: () {
-                  },
-                  child: const Text("Forgot Password?", style: TextStyle(color: Colors.blue)),
+                  onPressed: () {},
+                  child: const Text("Forgot Password?",
+                      style: TextStyle(color: Colors.blue)),
                 ),
               ),
             ),
@@ -103,7 +107,10 @@ class _LoginPageState extends State<LoginPage> {
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () {
-                    // Handle login logic
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(builder: (context) => const HomePage()),
+                    );
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.purple,
@@ -141,11 +148,12 @@ class _LoginPageState extends State<LoginPage> {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Image.asset(
-                        "assets/images/google_logo.jpg", 
+                        "assets/images/google_logo.jpg",
                         height: 24,
                       ),
                       const SizedBox(width: 10),
-                      const Text("Login with Google", style: TextStyle(fontSize: 16)),
+                      const Text("Login with Google",
+                          style: TextStyle(fontSize: 16)),
                     ],
                   ),
                 ),
@@ -158,15 +166,18 @@ class _LoginPageState extends State<LoginPage> {
             Center(
               child: GestureDetector(
                 onTap: () {
-                  // Navigate to Sign Up Page
+                  // Navigate to RegisterPage
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) =>  RegisterPage()),
+                    MaterialPageRoute(builder: (context) => RegisterPage()),
                   );
                 },
                 child: const Text(
                   "Don't have an account? Sign Up",
-                  style: TextStyle(color: Colors.blue, fontSize: 16, fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                      color: Colors.blue,
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold),
                 ),
               ),
             ),

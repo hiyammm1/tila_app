@@ -43,12 +43,15 @@ flutter:
      - assets/images/loginreg.jpg
      - assets/images/login2.jpg
      - assets/images/google_logo.jpg
+     - assets/images/home_banner.jpg
+     - assets/images/emergency_call.jpg
+     - assets/images/record_incident.jpg
 flutter_icons:
   android: true
   ios: true
-  image_path: "assets/images/ptb.png"  # Path to your app logo
-  adaptive_icon_background: "#A82AE3"  # Optional: Background color for Android adaptive icon
-  adaptive_icon_foreground: "assets/images/ptb.png"  # Optional for Android
+  image_path: "assets/images/ptb.png" 
+  adaptive_icon_background: "#A82AE3"  
+  adaptive_icon_foreground: "assets/images/ptb.png" 
   remove_alpha_ios: true  
 
 
