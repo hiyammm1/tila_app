@@ -1,94 +1,81 @@
 import 'package:flutter/material.dart';
+import 'register_page.dart';
 
-class LoginScreen extends StatefulWidget {
+class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
+
   @override
-  _LoginScreenState createState() => _LoginScreenState();
+  _LoginPageState createState() => _LoginPageState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
-  bool _isObscure = true; // Toggle password visibility
+class _LoginPageState extends State<LoginPage> {
+  bool _obscurePassword = true; 
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Header Image
-            Stack(
-              children: [
-                Container(
-                  width: double.infinity,
-                  height: 250,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage('assets/images/login2.jpg'), // Replace with your image
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ),
-                Positioned(
-                  top: 40,
-                  left: 15,
-                  child: IconButton(
-                    icon: Icon(Icons.arrow_back, color: Colors.black, size: 30),
-                    onPressed: () {
-                      Navigator.pop(context); // Go back
-                    },
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(height: 20),
-
-            // Login Title
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 25),
-              child: Text(
-                "login",
-                style: TextStyle(
-                  fontSize: 28,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
-                ),
+            // Top Image
+            SizedBox(
+              width: double.infinity,
+              child: Image.asset(
+                "assets/images/login2.jpg", 
+                fit: BoxFit.cover,
               ),
             ),
-            SizedBox(height: 20),
+
+            const SizedBox(height: 20),
+
+            // "Login" Title
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 24),
+              child: Text(
+                "Login",
+                style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+              ),
+            ),
+
+            const SizedBox(height: 20),
 
             // Email Field
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 25),
+              padding: const EdgeInsets.symmetric(horizontal: 24),
               child: TextField(
                 decoration: InputDecoration(
-                  prefixIcon: Icon(Icons.email, color: Colors.purple),
                   labelText: "E-mail",
-                  border: UnderlineInputBorder(),
+                  prefixIcon: const Icon(Icons.email),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
                 ),
               ),
             ),
-            SizedBox(height: 15),
+
+            const SizedBox(height: 15),
 
             // Password Field
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 25),
+              padding: const EdgeInsets.symmetric(horizontal: 24),
               child: TextField(
-                obscureText: _isObscure,
+                obscureText: _obscurePassword, 
                 decoration: InputDecoration(
-                  prefixIcon: Icon(Icons.vpn_key, color: Colors.purple),
                   labelText: "Password",
-                  border: UnderlineInputBorder(),
+                  prefixIcon: const Icon(Icons.lock),
                   suffixIcon: IconButton(
                     icon: Icon(
-                      _isObscure ? Icons.visibility_off : Icons.visibility,
-                      color: Colors.grey,
+                      _obscurePassword ? Icons.visibility_off : Icons.visibility,
                     ),
                     onPressed: () {
                       setState(() {
-                        _isObscure = !_isObscure;
+                        _obscurePassword = !_obscurePassword;
                       });
                     },
+                  ),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
                   ),
                 ),
               ),
@@ -96,74 +83,95 @@ class _LoginScreenState extends State<LoginScreen> {
 
             // Forgot Password
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 25, vertical: 10),
+              padding: const EdgeInsets.only(right: 24, top: 10),
               child: Align(
                 alignment: Alignment.centerRight,
                 child: TextButton(
                   onPressed: () {
-                    // TODO: Implement Forgot Password
                   },
-                  child: Text(
-                    "forget password?",
-                    style: TextStyle(color: Colors.blue, fontSize: 14),
-                  ),
+                  child: const Text("Forgot Password?", style: TextStyle(color: Colors.blue)),
                 ),
               ),
             ),
-            SizedBox(height: 10),
+
+            const SizedBox(height: 10),
 
             // Login Button
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 25),
-              child: ElevatedButton(
-                onPressed: () {
-                  // TODO: Implement login
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.purple,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30),
+              padding: const EdgeInsets.symmetric(horizontal: 24),
+              child: SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: () {
+                    // Handle login logic
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.purple,
+                    foregroundColor: Colors.white,
+                    padding: const EdgeInsets.symmetric(vertical: 15),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30),
+                    ),
                   ),
-                  padding: EdgeInsets.symmetric(vertical: 15),
-                  minimumSize: Size(double.infinity, 50),
-                ),
-                child: Text(
-                  "Login",
-                  style: TextStyle(fontSize: 18, color: Colors.white),
+                  child: const Text("Login", style: TextStyle(fontSize: 18)),
                 ),
               ),
             ),
-            SizedBox(height: 10),
+
+            const SizedBox(height: 12),
 
             // Google Login Button
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 25),
-              child: OutlinedButton(
-                onPressed: () {
-                  // TODO: Implement Google Login
-                },
-                style: OutlinedButton.styleFrom(
-                  side: BorderSide(color: Colors.purple),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                  padding: EdgeInsets.symmetric(vertical: 15),
-                  minimumSize: Size(double.infinity, 50),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Image.asset('assets/images/google_logo.png', width: 24), // Google Icon
-                    SizedBox(width: 10),
-                    Text(
-                      "login with google",
-                      style: TextStyle(fontSize: 16, color: Colors.black),
+              padding: const EdgeInsets.symmetric(horizontal: 24),
+              child: SizedBox(
+                width: double.infinity,
+                child: OutlinedButton(
+                  onPressed: () {
+                    // Handle Google login
+                  },
+                  style: OutlinedButton.styleFrom(
+                    foregroundColor: Colors.purple,
+                    side: const BorderSide(color: Colors.purple),
+                    padding: const EdgeInsets.symmetric(vertical: 15),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30),
                     ),
-                  ],
+                  ),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Image.asset(
+                        "assets/images/google_logo.jpg", 
+                        height: 24,
+                      ),
+                      const SizedBox(width: 10),
+                      const Text("Login with Google", style: TextStyle(fontSize: 16)),
+                    ],
+                  ),
                 ),
               ),
             ),
-            SizedBox(height: 20),
+
+            const SizedBox(height: 15),
+
+            // Sign Up Link
+            Center(
+              child: GestureDetector(
+                onTap: () {
+                  // Navigate to Sign Up Page
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) =>  RegisterPage()),
+                  );
+                },
+                child: const Text(
+                  "Don't have an account? Sign Up",
+                  style: TextStyle(color: Colors.blue, fontSize: 16, fontWeight: FontWeight.bold),
+                ),
+              ),
+            ),
+
+            const SizedBox(height: 20),
           ],
         ),
       ),

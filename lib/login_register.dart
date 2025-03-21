@@ -1,33 +1,20 @@
 import 'package:flutter/material.dart';
-import 'login_page.dart'; // Import the login page here
-import 'register_page.dart'; // Import the register page here
+import 'login_page.dart'; 
+import 'register_page.dart';
 
 class LoginRegisterScreen extends StatelessWidget {
   const LoginRegisterScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(import 'package:flutter/material.dart';
-
-class LoginPage extends StatelessWidget { // Ensure it extends StatelessWidget or StatefulWidget
-  const LoginPage({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(child: Text("Login Page")),
-    );
-  }
-}
-
       body: Stack(
         children: [
-          // Background Image (Stretch Horizontally)
           Positioned.fill(
             child: Image.asset(
-              "assets/images/loginreg.jpg",// Ensure this path exists
-              fit: BoxFit.fill, // Stretch horizontally to fit width
-              alignment: Alignment.center, // Center align the image
+              "assets/images/loginreg.jpg", 
+              fit: BoxFit.fill,
+              alignment: Alignment.center,
             ),
           ),
 
@@ -35,22 +22,21 @@ class LoginPage extends StatelessWidget { // Ensure it extends StatelessWidget o
           Align(
             alignment: Alignment.bottomLeft,
             child: Padding(
-              padding: const EdgeInsets.only(left: 24, bottom: 70), // Move content up a little
+              padding: const EdgeInsets.only(left: 24, bottom: 70),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start, // Align text to left
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Title - "Tilas Safe" with new font style
+                  // Title - "Tilas Safe"
                   const Text(
                     "Tilas Safe",
                     style: TextStyle(
-                      fontSize: 26, // Larger font size
-                      fontWeight: FontWeight.w700, // Font weight change
-                      fontFamily: 'Arial', // Change font family (use a font available in your project)
+                      fontSize: 26,
+                      fontWeight: FontWeight.w700,
                       color: Colors.black87,
                     ),
                   ),
-                  const SizedBox(height: 10), // Space between title and description
+                  const SizedBox(height: 10),
 
                   // Description
                   const Text(
@@ -59,22 +45,18 @@ class LoginPage extends StatelessWidget { // Ensure it extends StatelessWidget o
                     "especially when walking alone in isolated places\n"
                     "or at night. We are here for you!",
                     textAlign: TextAlign.left,
-                    style: TextStyle(
-                      fontSize: 14,
-                      color: Colors.black87,
-                    ),
+                    style: TextStyle(fontSize: 14, color: Colors.black87),
                   ),
-                  SizedBox(height: 20), // Adjusted SizedBox without const
+                  const SizedBox(height: 20),
 
-                  // Login Button (Stretched Left and Right)
+                  // Login Button
                   SizedBox(
-                    width: double.infinity, // Make button stretch across
+                    width: double.infinity,
                     child: ElevatedButton(
                       onPressed: () {
-                        // Navigate to login page
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => const LoginPage()),
+                          MaterialPageRoute(builder: (context) => LoginPage()), 
                         );
                       },
                       style: ElevatedButton.styleFrom(
@@ -83,22 +65,21 @@ class LoginPage extends StatelessWidget { // Ensure it extends StatelessWidget o
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30),
                         ),
-                        minimumSize: const Size(0, 50), // Adjusted height for button
+                        minimumSize: const Size(0, 50),
                       ),
                       child: const Text("Login", style: TextStyle(fontSize: 18)),
                     ),
                   ),
-                  SizedBox(height: 12), // Adjusted SizedBox without const
+                  const SizedBox(height: 12),
 
-                  // Register Button (Outlined, Stretched Left and Right)
+                  // Register Button (Outlined)
                   SizedBox(
-                    width: double.infinity, // Make button stretch across
+                    width: double.infinity,
                     child: OutlinedButton(
                       onPressed: () {
-                        // Navigate to register screen
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => const RegisterPage()),
+                          MaterialPageRoute(builder: (context) => RegisterPage()), 
                         );
                       },
                       style: OutlinedButton.styleFrom(
@@ -107,7 +88,7 @@ class LoginPage extends StatelessWidget { // Ensure it extends StatelessWidget o
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30),
                         ),
-                        minimumSize: const Size(0, 50), // Adjusted height for button
+                        minimumSize: const Size(0, 50),
                       ),
                       child: const Text("Register", style: TextStyle(fontSize: 18)),
                     ),
@@ -120,8 +101,4 @@ class LoginPage extends StatelessWidget { // Ensure it extends StatelessWidget o
       ),
     );
   }
-}
-
-class LoginPage {
-  const LoginPage();
 }

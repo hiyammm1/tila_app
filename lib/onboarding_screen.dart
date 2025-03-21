@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'login_register.dart';  // Import the LoginRegisterScreen
+import 'login_register.dart';  
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});
@@ -51,25 +51,23 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             itemBuilder: (context, index) {
               return Stack(
                 children: [
-                  // Set solid purple background for first screen, else use image background
                   Positioned.fill(
                     child: index == 0
-                        ? Container(color: const Color(0xFFA82AE3)) // Background for first page
+                        ? Container(color: const Color(0xFFA82AE3)) 
                         : Image.asset(_pages[index]["image"]!, fit: BoxFit.cover),
                   ),
-                  // Gradient overlay for other screens
                   if (index != 0)
                     Positioned.fill(
                       child: Container(
                         decoration: BoxDecoration(
                           gradient: LinearGradient(
                             colors: [
-                              Colors.purple.withOpacity(0.2), // Start with no effect at the top
-                              Colors.purple.withOpacity(0.6), // Gradually get purple in the middle
-                              const Color(0xFFA82AE3).withOpacity(0.99), // Even darker purple in the lower middle
-                              const Color(0xFFA82AE3), // Full dark purple at the bottom
+                              Colors.purple.withOpacity(0.2), 
+                              Colors.purple.withOpacity(0.6), 
+                              const Color(0xFFA82AE3).withOpacity(0.99), 
+                              const Color(0xFFA82AE3), 
                             ],
-                            stops: const [0.0, 0.4, 0.7, 1.0], // Controls transition points (stepping into darker colors)
+                            stops: const [0.0, 0.4, 0.7, 1.0], 
                             begin: Alignment.topCenter,
                             end: Alignment.bottomCenter,
                           ),
@@ -88,7 +86,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   // Title and subtitle for other screens
                   if (index != 0)
                     Positioned(
-                      bottom: 150, // Move text closer to the bottom by adjusting this value
+                      bottom: 150, 
                       left: 20,
                       right: 20,
                       child: Column(
@@ -131,8 +129,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                                     Icons.circle,
                                     size: 12.0,
                                     color: _currentIndex == dotIndex + 1
-                                        ? Colors.white // Highlight the current page dot
-                                        : Colors.white70, // Inactive dots
+                                        ? Colors.white 
+                                        : Colors.white70, 
                                   ),
                                 );
                               }),
